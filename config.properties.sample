@@ -1,13 +1,13 @@
 # Deployment configuration
 
 ## App
-jenkinsBuild="Booker-V2-2";                              # Jenkins project to use by default
-filename="booker-release.zip";                           # The name of the file generated (must'nt change between t2 deploys)
+jenkinsBuild="Booker-V2-2";                              # Jenkins project (used by default)
+filename="booker-release.zip";                           # The name of the file generated (see Jenkins configuration, in build step)
 
 ## Server
 rep="/home/sites/myapp";                                 # Where the app is installed (before /app)
 service="/etc/service/myapp";                            # Where the svc service is located
-log="$rep/log/current"                                   # Where logs are situated
+log="$rep/log/current"                                   # Where logs are located
 
 ## Jenkins
 jenkinsUser="xxx@zenexity.com"
