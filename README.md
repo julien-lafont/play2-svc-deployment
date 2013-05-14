@@ -29,13 +29,11 @@
 
 ## Usage
 
-Build your project on jenkins (I'll try to automate that in the next version)
-
-And run:
+Build your project on jenkins (I'll try to automate that in the next version), and run:
 
     /home/sites/myapp/scripts/update.sh
 
-The program will ask you the `Jenkins build` to use. Leave empty to use the default value.
+<center><img src="http://img15.hostingpics.net/pics/115803Capturedcran20130514225815.png" /></center>
 
 ## Why this tool ?
 
