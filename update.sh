@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+VERSION="1.4"
 
 # Load Configuration
 source "$DIR/config.properties" || exit 1
@@ -49,7 +50,7 @@ d=`date +"%Y-%m-%d-%Hh%M"`
 # Summary
 #
 echo ""
-echo -e "Play2.X Deployment -$red Please double check the configuration! $reset"
+echo -e "Play2.X Deployment $VERSION -$red Please double check the configuration! $reset"
 echo ""
 echo -e "  Directory       >$cyan $rep $reset"
 echo -e "  Service         >$cyan $service $reset"
