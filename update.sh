@@ -41,8 +41,8 @@ if [ ! -d "$rep/app" ]; then echo "App directory $rep/app not found"; exit 1; fi
 if [ ! -d "$rep/delivery" ]; then echo "Delivery directory $rep/delivery not found"; exit 1; fi;
 
 # Extract data
-appuser=$(ls -l . | grep -e " app$" | head | awk '{ print $3 }')
-appgroup=$(ls -l . | grep -e " app$" | head | awk '{ print $4 }')
+appuser=$(ls -l $rep | grep -e " app$" | head | awk '{ print $3 }')
+appgroup=$(ls -l $rep | grep -e " app$" | head | awk '{ print $4 }')
 d=`date +"%Y-%m-%d-%Hh%M"`
 
 #
