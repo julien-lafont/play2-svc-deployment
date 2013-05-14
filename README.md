@@ -10,7 +10,6 @@
 * Works only for simple app (automatic db update, no manual operation...)
 * Builded on Jenkin with this configuration
 
-        /home/builder/play/2.1.0/play play-version;
         /home/builder/play/2.1.0/play clean dist;
         cd dist; mv *.zip myapp-release.zip;
 
