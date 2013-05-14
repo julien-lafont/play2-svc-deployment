@@ -1,7 +1,7 @@
 # Automatic updater for Play2 projects
 
 > For basic Play2 apps builded on **Jenkins** and managed by **svc**. <br />
-> In other world, it will only works for **Zenexity** projects! <br />
+> In other word, it will only works for **Zenexity** projects! <br />
 > **USE WITH CAUTION!**
 
 ## Prerequisites
@@ -22,7 +22,6 @@
     git clone https://github.com/studiodev/play2-svc-deployment.git
     mv play2-svc-deployment scripts
     cd scripts
-    chmod +x update.sh
     mv config.properties.sample config.properties
     vim config.properties # and edit the file with good configuration. Double check the settings!
 
