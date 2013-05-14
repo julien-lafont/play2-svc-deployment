@@ -22,7 +22,7 @@
     git clone https://github.com/studiodev/play2-svc-deployment.git
     mv play2-svc-deployment scripts
     cd scripts
-    mv config.properties.sample config.properties
+    cp config.properties.sample config.properties
     vim config.properties # and edit the file with good configuration. Double check the settings!
 
 ## Usage
