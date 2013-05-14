@@ -1,14 +1,13 @@
 # Automatic updater for Play2 projects
 
-> For basic Play2 apps builded on **Jenkins** and managed by **svc**. <br />
-> In other word, it will only works for **Zenexity** projects! <br />
+> For basic Play2 apps builded on **Jenkins** and managed by **Svc**. <br />
+> In other words, it will only works for **Zenexity** projects! <br />
 > **USE WITH CAUTION!**
 
 ## Prerequisites
 * Must be Play 2.x project
-* Managed by svc
-* Works only for simple app (automatic db update, no manual operation...)
-* Builded on Jenkin with this configuration
+* Managed by Svc
+* Builded on Jenkins with this configuration
 
         /home/builder/play/2.1.0/play clean dist;
         cd dist; mv *.zip myapp-release.zip;
@@ -31,7 +30,7 @@ Build your project on jenkins (I'll try to automate that in the next version), a
 
     /home/sites/myapp/scripts/update.sh
 
-<center><img src="http://img15.hostingpics.net/pics/115803Capturedcran20130514225815.png" /></center>
+<img src="http://img15.hostingpics.net/pics/115803Capturedcran20130514225815.png" />
 
 ## Why this tool ?
 
