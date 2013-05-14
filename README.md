@@ -10,7 +10,7 @@
 * Builded on Jenkins with this configuration
 
         /home/builder/play/2.1.0/play clean dist;
-        cd dist; mv *.zip myapp-release.zip;
+        cd dist; mv *.zip myapp-release.zip; # Very important!
 
 ## Installation
 
