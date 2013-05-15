@@ -71,7 +71,7 @@ mkdir $d || exit 1                                # Create new directory with th
 cd $d
 echo "OK"
 
-echo -ne "- Downloading last release of $jenkinsBuild/$filename: "
+echo -ne "- Downloading last release of $jenkinsRealBuild/$filename: "
 wget --auth-no-challenge --http-user=$jenkinsUser --http-password=$jenkinsToken -q \
   "http://build-01.znx.fr/job/$jenkinsRealBuild/lastSuccessfulBuild/artifact/dist/$filename" || exit 1
 echo "OK"
