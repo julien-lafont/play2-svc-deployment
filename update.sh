@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-VERSION="1.8"
+VERSION="1.9"
 
 # Helpers
 red="\033[31m"
