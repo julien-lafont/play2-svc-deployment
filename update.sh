@@ -64,6 +64,9 @@ d=`date +"%Y-%m-%d-%Hh%M"`
 #
 echo ""
 echo -e "Play2.X Deployment $VERSION -$red Please double check the configuration! $reset"
+if [[ $* != *--test* ]]; then
+  echo -ne "$green"; echo -e "TEST MODE : Nothing will be modified$reset"
+fi
 echo ""
 echo -e "  Directory       >$cyan $rep $reset"
 echo -e "  Service         >$cyan $service $reset"
@@ -71,6 +74,10 @@ echo -e "  User-Group      >$cyan $appuser:$appgroup $reset"
 echo -ne "  Build Jenkins   > "; jenkinsRealBuild=$(ask $jenkinsBuild);
 echo ""
 echo -e "If everything is OK: $green<Enter>$reset, otherwise: $red<CTRL+C>$reset"
+
+if [[ $* != *--test* ]]; then
+  exit 0
+fi
 
 read pause
 
