@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-VERSION="1.4"
+VERSION="1.5"
 
 # Helpers
 red="\033[31m"
@@ -10,7 +10,7 @@ green="\033[32m"
 yellow="\033[33m"
 cyan="\033[36m"
 
-# Auto-update the script from Github
+# Auto-update the script from Git
 if [[ $* != *--skip-update* ]]; then
   uptodate=$(git --git-dir=$DIR/.git fetch origin -q && git --git-dir=$DIR/.git log HEAD..origin/master --oneline | wc -l | sed 's/^ *//g') # Is the repository up to date? 0=yes
 
