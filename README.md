@@ -17,7 +17,6 @@
 **This script must be installed on an already working project!**
 
     cd /home/sites/myapp
-    mkdir delivery
     git clone https://github.com/studiodev/play2-svc-deployment.git
     mv play2-svc-deployment scripts
     cd scripts
@@ -31,6 +30,8 @@ Build your project on jenkins (I'll try to automate that in the next version), a
     /home/sites/myapp/scripts/update.sh
 
 <img src="http://img15.hostingpics.net/pics/115803Capturedcran20130514225815.png" />
+
+If you just want to check the config, add `--test`. Only the verifications will be launched.
 
 ## Why this tool ?
 
