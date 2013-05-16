@@ -64,7 +64,7 @@ d=`date +"%Y-%m-%d-%Hh%M"`
 #
 echo ""
 echo -e "Play2.X Deployment $VERSION -$red Please double check the configuration! $reset"
-if [[ $* != *--test* ]]; then
+if [[ $* == *--test* ]]; then
   echo -ne "$green"; echo -e "TEST MODE : Nothing will be modified$reset"
 fi
 echo ""
@@ -75,7 +75,7 @@ echo -ne "  Build Jenkins   > "; jenkinsRealBuild=$(ask $jenkinsBuild);
 echo ""
 echo -e "If everything is OK: $green<Enter>$reset, otherwise: $red<CTRL+C>$reset"
 
-if [[ $* != *--test* ]]; then
+if [[ $* == *--test* ]]; then
   exit 0
 fi
 
