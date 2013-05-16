@@ -12,7 +12,7 @@ cyan="\033[36m"
 
 # Auto-update the script from Git
 if [[ $* != *--skip-update* ]]; then
-  uptodate=$(git --git-dir=$DIR/.git fetch origin -q && git --git-dir=$DIR/.git log HEAD..origin/master --oneline | wc -l | sed 's/^ *//g') # Is the repository up to date? 0=yes
+  uptodate=$(git --git-dir=$DIR/.git fetch origin -q > /dev/null && git --git-dir=$DIR/.git log HEAD..origin/master --oneline | wc -l | sed 's/^ *//g') # Is the repository up to date? 0=yes
 
   if [[ "$uptodate" != "0" ]]; then
     echo "New version released, updating..."
