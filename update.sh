@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-VERSION="1.5"
+VERSION="1.6"
 
 # Helpers
 red="\033[31m"
@@ -18,7 +18,7 @@ if [[ $* != *--skip-update* ]]; then
     echo "New version released, updating..."
     git --git-dir=$DIR/.git pull >/dev/null || echo -e "$red Error when updating this script. Please report to @jla $reset"
     newVersion=$(cat $0 | grep 'VERSION=' | head -n 1 | sed 's/VERSION="\(.*\)"/\1/')
-    echo "Script updated from $green$VERSION$reset to $green$newVersion$reset"
+    echo -e "Script updated from $green$VERSION$reset to $green$newVersion$reset"
     $0 --skip-update
     exit 0
   fi
