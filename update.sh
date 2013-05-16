@@ -24,8 +24,6 @@ if [[ $* != *--skip-update* ]]; then
   fi
 fi
 
-exit
-
 # Load Configuration
 source "$DIR/config.properties" || exit 1
 
