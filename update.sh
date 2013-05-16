@@ -3,19 +3,34 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 VERSION="1.4"
 
-# Load Configuration
-source "$DIR/config.properties" || exit 1
-
-#
 # Helpers
-#
 red="\033[31m"
 reset="\033[0m"
 green="\033[32m"
 yellow="\033[33m"
 cyan="\033[36m"
 
-ask() { # Read a value with default
+# Auto-update the script from Github
+if [[ $* != *--skip-update* ]]; then
+  uptodate=$(git --git-dir=$DIR/.git fetch origin -q && git --git-dir=$DIR/.git log HEAD..origin/master --oneline | wc -l | sed 's/^ *//g') # Is the repository up to date? 0=yes
+
+  if [[ "$uptodate" != "0" ]]; then
+    echo "New version released, updating..."
+    git --git-dir=$DIR/.git pull >/dev/null || echo -e "$red Error when updating this script. Please report to @jla $reset"
+    newVersion=$(cat $0 | grep 'VERSION=' | head -n 1 | sed 's/VERSION="\(.*\)"/\1/')
+    echo "Script updated from $green$VERSION$reset to $green$newVersion$reset"
+    $0 --skip-update
+    exit 0
+  fi
+fi
+
+exit
+
+# Load Configuration
+source "$DIR/config.properties" || exit 1
+
+# Read a value with default
+ask() { 
   local default=$1
   read -p "(default: $default) " name
   name=${name:-$default}
@@ -42,8 +57,8 @@ if [ ! -d "$rep/app" ]; then echo "App directory $rep/app not found"; exit 1; fi
 if [ ! -d "$rep/delivery" ]; then echo "Delivery directory $rep/delivery not found"; exit 1; fi;
 
 # Extract data
-appuser=$(ls -l $rep | grep -e " app$" | head | awk '{ print $3 }')
-appgroup=$(ls -l $rep | grep -e " app$" | head | awk '{ print $4 }')
+appuser=$(ls -l $rep | grep -e " app$" | head | awk '{ print $3 }')   # Get user of app directory
+appgroup=$(ls -l $rep | grep -e " app$" | head | awk '{ print $4 }')  # Get group of app directory
 d=`date +"%Y-%m-%d-%Hh%M"`
 
 #
@@ -65,6 +80,7 @@ read pause
 # Deploying
 #
 echo -ne "- Preparing delivery directory in $d: "
+ls $rep/delivery &> /dev/null || (mkdir $rep/delivery || ( echo "$red Cannot create delivery dir $rep/delivery $reset"; exit 1)) # Create delivery directory if not exists
 cd $rep/delivery || exit 1
 rm -Rf ./$d 2>/dev/null                           # Empty if already exist
 mkdir $d || exit 1                                # Create new directory with the current date
@@ -84,7 +100,7 @@ cd $foldername                                    # Go inside the unziped dir
 echo "OK"
 
 echo -ne "- Stopping server: "
-svc -d $service                                   # Stop server and wait a little time
+svc -d $service || exit 1                         # Stop server and wait a little time
 sleep 2
 echo "OK"
 
