@@ -6,7 +6,6 @@ filename="booker-release.zip";                           # The name of the file 
 
 ## Server
 rep="/home/sites/myapp";                                 # Where the app is installed (before /app)
-service="/etc/service/myapp";                            # Where the svc service is located
 log="$rep/log/current"                                   # Where logs are located
 
 ## Jenkins

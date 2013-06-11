@@ -28,7 +28,7 @@ fi
 source "$DIR/config.properties" || exit 1
 
 # Read a value with default
-ask() { 
+ask() {
   local default=$1
   read -p "(default: $default) " name
   name=${name:-$default}
@@ -41,7 +41,6 @@ ask() {
 
 # Check if all variables are defined?
 : ${rep?not defined}
-: ${service?not defined}
 : ${jenkinsBuild?not defined}
 : ${filename?not defined}
 : ${jenkinsUser?not defined}
@@ -49,7 +48,6 @@ ask() {
 : ${log?not defined}
 
 # Folders are valid?
-if [ ! -d "$service" ]; then echo "Service $service not found"; exit 1; fi;
 if [ ! -d "$rep" ]; then echo "Base directory $rep not found"; exit 1; fi;
 if [ ! -d "$rep/app" ]; then echo "App directory $rep/app not found"; exit 1; fi;
 if [ ! -d "$rep/delivery" ]; then echo "Delivery directory $rep/delivery not found"; exit 1; fi;
@@ -69,7 +67,7 @@ if [[ $* == *--test* ]]; then
 fi
 echo ""
 echo -e "  Directory       >$cyan $rep $reset"
-echo -e "  Service         >$cyan $service $reset"
+echo -e "  Service         >$cyan MANUAL $reset"
 echo -e "  User-Group      >$cyan $appuser:$appgroup $reset"
 echo -ne "  Build Jenkins   > "; jenkinsRealBuild=$(ask $jenkinsBuild);
 echo ""
@@ -105,8 +103,11 @@ cd $foldername                                    # Go inside the unziped dir
 echo "OK"
 
 echo -ne "- Stopping server: "
-svc -d $service || exit 1                         # Stop server and wait a little time
-sleep 2
+if [ -f "$rep/app/RUNNING_PID" ]
+then
+	kill $(cat $rep/app/RUNNING_PID) &> /dev/null
+	sleep 2
+fi
 echo "OK"
 
 echo -ne "- Installing new app: "
@@ -120,7 +121,7 @@ chmod u+x $rep/app/start || exit 1                # Make start executable
 echo "OK"
 
 echo -ne "- Starting new app: "
-svc -u $service                                   # Restart server
+su $appuser -c "$rep/run.sh" &> /dev/null
 echo "OK"
 
 echo -ne "- Cleaning: "
