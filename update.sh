@@ -123,6 +123,7 @@ chmod u+x $rep/app/start || exit 1                # Make start executable
 echo "OK"
 
 if [ -n "$hookBeforeRestart" ]; then
+  cd ~
   echo -ne "- Hook BeforeRestart"
   echo ">> $hookBeforeRestart"
   $(echo $hookBeforeRestart)
