@@ -126,9 +126,15 @@ if [ -n "$hookBeforeRestart" ]; then
   cd ~
   echo -ne "- Hook BeforeRestart"
   echo ">> $hookBeforeRestart"
+  echo -ne "$yellow"
   $(echo $hookBeforeRestart)
+  echo -ne "$reset"
   echo "OK"
 fi
+
+echo -ne "- Starting new app: "
+svc -u $service                                   # Restart server
+echo "OK"
 
 echo -ne "- Cleaning: "
 rmdir "$rep/delivery/$d/$foldername"              # Remove empty dir
