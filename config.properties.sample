@@ -12,3 +12,7 @@ log="$rep/log/current"                                   # Where logs are locate
 ## Jenkins
 jenkinsUser="xxx@zenexity.com"
 jenkinsToken=""
+#jenkinsUrl="http://build-02.znx.fr"
+
+# Hooks
+#hookBeforeRestart=""

@@ -47,7 +47,9 @@ ask() {
 : ${jenkinsUser?not defined}
 : ${jenkinsToken?not defined}
 : ${log?not defined}
+
 jenkinsUrl=${jenkinsUrl:-http://build-01.znx.fr}
+hookBeforeRestart=${hookBeforeRestart:-""}
 
 # Folders are valid?
 if [ ! -d "$service" ]; then echo "Service $service not found"; exit 1; fi;
@@ -120,9 +122,12 @@ chown -R "$appuser:$appgroup" $rep/app/ || exit 1 # Chown the app to good user:g
 chmod u+x $rep/app/start || exit 1                # Make start executable
 echo "OK"
 
-echo -ne "- Starting new app: "
-svc -u $service                                   # Restart server
-echo "OK"
+if [ -n "$VAR" ]; then
+  echo -ne "- Hook BeforeRestart"
+  echo ">> $hookBeforeRestart"
+  $(echo $hookBeforeRestart)
+  echo "OK"
+fi
 
 echo -ne "- Cleaning: "
 rmdir "$rep/delivery/$d/$foldername"              # Remove empty dir
