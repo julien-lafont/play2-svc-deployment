@@ -47,7 +47,7 @@ ask() {
 : ${jenkinsUser?not defined}
 : ${jenkinsToken?not defined}
 : ${log?not defined}
-: ${jenkinsUrl?not defined}
+jenkinsUrl=${jenkinsUrl:-http://build-01.znx.fr}
 
 # Folders are valid?
 if [ ! -d "$service" ]; then echo "Service $service not found"; exit 1; fi;
