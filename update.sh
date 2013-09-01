@@ -47,6 +47,7 @@ ask() {
 : ${jenkinsUser?not defined}
 : ${jenkinsToken?not defined}
 : ${log?not defined}
+: ${jenkinsUrl?not defined}
 
 # Folders are valid?
 if [ ! -d "$service" ]; then echo "Service $service not found"; exit 1; fi;
@@ -94,7 +95,7 @@ echo "OK"
 
 echo -ne "- Downloading last release of $jenkinsRealBuild/$filename: "
 wget --auth-no-challenge --http-user=$jenkinsUser --http-password=$jenkinsToken -q \
-  "http://build-01.znx.fr/job/$jenkinsRealBuild/lastSuccessfulBuild/artifact/dist/$filename" || exit 1
+  "$jenkinsUrl/job/$jenkinsRealBuild/lastSuccessfulBuild/artifact/dist/$filename" || exit 1
 echo "OK"
 
 echo -ne "- Preparing server for new deployment: "
