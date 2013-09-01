@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-VERSION="1.10"
+VERSION="1.11"
 
 # Helpers
 red="\033[31m"
@@ -122,7 +122,7 @@ chown -R "$appuser:$appgroup" $rep/app/ || exit 1 # Chown the app to good user:g
 chmod u+x $rep/app/start || exit 1                # Make start executable
 echo "OK"
 
-if [ -n "$VAR" ]; then
+if [ -n "$hookBeforeRestart" ]; then
   echo -ne "- Hook BeforeRestart"
   echo ">> $hookBeforeRestart"
   $(echo $hookBeforeRestart)
