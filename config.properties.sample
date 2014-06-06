@@ -3,6 +3,7 @@
 ## App
 jenkinsBuild="Booker-V2-2";                              # Jenkins project (used by default)
 filename="booker-release.zip";                           # The name of the file generated (see Jenkins configuration, in build step)
+appname="app"                                            # The name of the app (also the start script
 
 ## Server
 rep="/home/sites/myapp";                                 # Where the app is installed (before /app)

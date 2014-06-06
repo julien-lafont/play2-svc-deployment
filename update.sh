@@ -47,6 +47,7 @@ ask() {
 : ${jenkinsUser?not defined}
 : ${jenkinsToken?not defined}
 : ${log?not defined}
+: ${appname?not defined}
 
 jenkinsUrl=${jenkinsUrl:-http://build-01.znx.fr}
 hookBeforeRestart=${hookBeforeRestart:-""}
@@ -119,7 +120,10 @@ echo "OK"
 
 echo -ne "- Configuring new app: "
 chown -R "$appuser:$appgroup" $rep/app/ || exit 1 # Chown the app to good user:group
-chmod u+x $rep/app/start || exit 1                # Make start executable
+#mv $rep/app/bin/$appname $rep/app/start || exit 1
+#chmod u+x $rep/app/start || exit 1                # Make start executable
+cd $rep/app
+ln -s bin/$appname start || exit 1
 echo "OK"
 
 if [ -n "$hookBeforeRestart" ]; then
